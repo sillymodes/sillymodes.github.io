@@ -250,7 +250,7 @@ code, .code-font {
 
 .hero-steps {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2rem;
   flex-wrap: wrap;
 }
@@ -1757,7 +1757,7 @@ code, .code-font {
 
   .hero-steps {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .step {
