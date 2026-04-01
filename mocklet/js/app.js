@@ -187,7 +187,6 @@ function renderShell() {
       el('nav', { className: 'header-nav' },
         el('a', { href: '#/', className: 'nav-link' }, 'Builder'),
         el('a', { href: '#/reviews', className: 'nav-link' }, 'Reviews'),
-        el('a', { href: '#/stats', className: 'nav-link' }, 'Stats'),
         el('a', { href: '#/about', className: 'nav-link' }, 'About'),
         el('a', {
           href: 'https://buymeacoffee.com/timtian',
