@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /mocklet/
+Sitemap: https://sillymodes.github.io/mocklet/sitemap.xml
