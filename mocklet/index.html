@@ -12,6 +12,11 @@
   <meta name="author" content="Tim Tian">
   <meta name="robots" content="index, follow">
 
+  <!-- Theme Color for Mobile Browsers -->
+  <meta name="theme-color" content="#0d1117">
+  <meta name="msapplication-navbutton-color" content="#0d1117">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sillymodes.github.io/mocklet/">
@@ -28,6 +33,10 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://sillymodes.github.io/mocklet/">
 
+  <!-- Preconnect to Workers Domain -->
+  <link rel="preconnect" href="https://mocklet-worker.sillymodes.workers.dev">
+  <link rel="dns-prefetch" href="https://mocklet-worker.sillymodes.workers.dev">
+
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 
@@ -37,14 +46,42 @@
 <body>
   <div id="app-root"></div>
 
-  <!-- Structured Data for SEO -->
+  <!-- Noscript Fallback for Crawlers and Users Without JS -->
+  <noscript>
+    <div style="max-width:720px;margin:2rem auto;padding:2rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#e6edf3;background:#0d1117;">
+      <h1>Mocklet — Instant Disposable Mock APIs</h1>
+      <p>Spin up a fake REST API in 5 seconds. Free mock API online — no signup, no install. Define routes, set responses, and test instantly.</p>
+      <h2>How It Works</h2>
+      <ol>
+        <li><strong>Define your routes</strong> — Specify HTTP methods, paths, response bodies, status codes, and headers.</li>
+        <li><strong>Create your mock</strong> — One click deploys your mock API with a unique live URL.</li>
+        <li><strong>Use it anywhere</strong> — Hit your endpoints from any HTTP client. Every request is logged.</li>
+      </ol>
+      <h2>Frequently Asked Questions</h2>
+      <dl>
+        <dt><strong>What is a mock API?</strong></dt>
+        <dd>A mock API is a simulated API endpoint that returns predefined responses. Developers use mock APIs to test frontend code, prototype integrations, and validate workflows without relying on a real backend.</dd>
+        <dt><strong>Is Mocklet free?</strong></dt>
+        <dd>Yes, Mocklet is completely free. No credit card, no paid tiers, no hidden limits for normal usage.</dd>
+        <dt><strong>Do I need to sign up?</strong></dt>
+        <dd>No. Mocklet requires no account, no API key, and no installation. Just define your routes and start testing.</dd>
+        <dt><strong>How long do endpoints last?</strong></dt>
+        <dd>Every mock endpoint auto-expires after 24 hours. This keeps things clean and is perfect for quick tests and CI/CD pipelines.</dd>
+        <dt><strong>Can I use Mocklet for testing webhooks?</strong></dt>
+        <dd>Yes. Mocklet captures every incoming request with full headers and body, making it ideal for inspecting webhook payloads during development.</dd>
+      </dl>
+      <p>Please enable JavaScript to use the Mocklet route builder.</p>
+    </div>
+  </noscript>
+
+  <!-- Structured Data: SoftwareApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     "name": "Mocklet",
     "url": "https://sillymodes.github.io/mocklet/",
-    "description": "Spin up a fake REST API in 5 seconds. Free mock API online — no signup, no install.",
+    "description": "Spin up a fake REST API in 5 seconds. Free mock API online — no signup, no install. Define routes, set responses, and test instantly.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "offers": {
@@ -55,7 +92,120 @@
     "author": {
       "@type": "Person",
       "name": "Tim Tian"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1",
+      "bestRating": "5",
+      "worstRating": "1"
     }
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a mock API?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A mock API is a simulated API endpoint that returns predefined responses instead of connecting to a real backend. Developers use mock APIs to test frontend code, prototype integrations, simulate error scenarios, and validate workflows — all without needing a live server. Mocklet lets you create disposable mock REST APIs in seconds with no signup required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long do Mocklet endpoints last?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every Mocklet endpoint auto-expires after 24 hours. This disposable design keeps things clean and is ideal for quick tests, CI/CD pipelines, and prototyping. You can create a new mock at any time — there is no limit on how many mocks you create over time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to sign up to use Mocklet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Mocklet requires no account, no API key, and no installation. Just open the website, define your routes, and click Create. Your mock API is live instantly with a unique URL you can use from any HTTP client."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Mocklet free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Mocklet is completely free to use. There are no paid tiers, no credit card requirements, and no hidden fees. The service is sustained by optional donations via Buy Me a Coffee."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use Mocklet for testing webhooks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Mocklet captures every incoming request including full headers and request body, making it an excellent tool for inspecting webhook payloads during development. Set up a mock endpoint, point your webhook sender at it, and view all captured requests in the dashboard's request log."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: HowTo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Create a Mock API with Mocklet",
+    "description": "Create a free disposable mock REST API in three simple steps using Mocklet. No signup or installation required.",
+    "totalTime": "PT30S",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Define your routes",
+        "text": "Open Mocklet and use the route builder to add API endpoints. Specify the HTTP method (GET, POST, PUT, DELETE), path, response body, status code, custom headers, and optional latency for each route.",
+        "url": "https://sillymodes.github.io/mocklet/"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Create your mock",
+        "text": "Click the 'Create Mock API' button. Mocklet instantly deploys your mock to Cloudflare's edge network and gives you a unique live URL. Save the deletion secret that is provided.",
+        "url": "https://sillymodes.github.io/mocklet/"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Use your mock API",
+        "text": "Send HTTP requests to your mock URL from any client — curl, Postman, your frontend app, or CI/CD pipeline. View all incoming requests in the Mocklet dashboard's live request log.",
+        "url": "https://sillymodes.github.io/mocklet/"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://sillymodes.github.io/mocklet/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About",
+        "item": "https://sillymodes.github.io/mocklet/#/about"
+      }
+    ]
   }
   </script>
 

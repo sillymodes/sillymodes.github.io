@@ -64,17 +64,52 @@ export function renderBuilder(container) {
   // How it works (SEO content)
   const howItWorks = el('section', { className: 'how-it-works' },
     el('h2', { className: 'section-title' }, 'How It Works'),
+    el('p', { className: 'how-intro' },
+      'Mocklet is a free mock API generator that lets developers create temporary REST API endpoints without signing up or installing anything. Here is how to get started:',
+    ),
     el('div', { className: 'how-grid' },
-      renderHowCard('Instant Mock APIs', 'Create a free mock API online in seconds. Define your endpoints, set response bodies, status codes, and headers. Your mock is live immediately with a unique URL.'),
-      renderHowCard('Test Webhooks', 'Need to test webhook endpoints? Mocklet captures every incoming request with full headers and body, so you can inspect what your services are sending.'),
-      renderHowCard('No Signup Required', 'Unlike other mock JSON API tools, Mocklet requires no account, no signup, and no installation. Just define your routes and start testing.'),
-      renderHowCard('Disposable by Design', 'Every mock auto-expires after 24 hours. Perfect for quick tests, CI/CD pipelines, and development without leaving stale endpoints behind.'),
+      renderHowCard('Instant Mock APIs', 'Create a free mock API online in seconds. Define your endpoints, set response bodies, status codes, and headers. Your mock is live immediately with a unique URL you can share with your team.'),
+      renderHowCard('Test Webhooks & Integrations', 'Need to test webhook endpoints or third-party integrations? Mocklet captures every incoming request with full headers and body, so you can inspect exactly what your services are sending.'),
+      renderHowCard('No Signup Required', 'Unlike other mock JSON API tools, Mocklet requires no account, no signup, and no installation. Just define your routes and start testing. Works in any browser on any device.'),
+      renderHowCard('Disposable by Design', 'Every mock auto-expires after 24 hours. Perfect for quick tests, CI/CD pipelines, and development without leaving stale endpoints behind. Create as many mocks as you need.'),
+    ),
+    el('h3', { className: 'how-subheading' }, 'Built for Modern Development Workflows'),
+    el('p', { className: 'how-detail' },
+      'Whether you are building a frontend prototype, running integration tests in your CI/CD pipeline, debugging webhook payloads, or demoing an API to your team, Mocklet gives you a live endpoint in seconds. Define custom status codes (200, 201, 400, 404, 500, and more), set response headers, add simulated latency, and use dynamic response templates that interpolate request data.',
+    ),
+  );
+
+  // FAQ Section (SEO + user help)
+  const faqSection = el('section', { className: 'faq-section', id: 'faq' },
+    el('h2', { className: 'section-title' }, 'Frequently Asked Questions'),
+    el('div', { className: 'faq-list' },
+      renderFaqItem(
+        'What is a mock API?',
+        'A mock API is a simulated API endpoint that returns predefined responses instead of connecting to a real backend server. Developers use mock APIs to test frontend code independently, prototype integrations before the backend is ready, simulate error scenarios like 500 or 404 responses, and validate workflows without depending on external services. Mocklet makes it easy to create disposable mock REST APIs in seconds with no signup required.'
+      ),
+      renderFaqItem(
+        'How long do Mocklet endpoints last?',
+        'Every Mocklet endpoint auto-expires after 24 hours. This disposable design keeps things clean and is ideal for quick tests, CI/CD pipeline runs, and prototyping sessions. You do not need to worry about cleaning up old endpoints. If you need a fresh mock, just create a new one — there is no limit on how many mocks you can create over time.'
+      ),
+      renderFaqItem(
+        'Do I need to sign up to use Mocklet?',
+        'No. Mocklet requires no account, no API key, and no installation. Just open the website, define your routes using the builder form above, and click Create. Your mock API is deployed instantly to Cloudflare\'s global edge network and you get a unique URL you can use from any HTTP client — curl, Postman, your browser, or your application code.'
+      ),
+      renderFaqItem(
+        'Is Mocklet free?',
+        'Yes, Mocklet is completely free to use. There are no paid tiers, no credit card requirements, and no hidden fees. The service is sustained by optional donations via Buy Me a Coffee. You can create mock APIs with up to 20 routes each, with 32 KB response bodies, custom headers, configurable latency, and full request logging — all at no cost.'
+      ),
+      renderFaqItem(
+        'Can I use Mocklet for testing webhooks?',
+        'Absolutely. Mocklet captures every incoming request including the full HTTP headers and request body, making it an excellent tool for inspecting webhook payloads during development. Set up a mock endpoint with any path, point your webhook sender at it, and then view all captured requests in the dashboard\'s live request log. You can see the exact data your service is sending in real time.'
+      ),
     ),
   );
 
   container.appendChild(hero);
   container.appendChild(builderSection);
   container.appendChild(howItWorks);
+  container.appendChild(faqSection);
 
   updateRouteList();
 }
@@ -94,6 +129,42 @@ function renderHowCard(title, text) {
     el('h3', {}, title),
     el('p', {}, text),
   );
+}
+
+function renderFaqItem(question, answer) {
+  const content = el('div', { className: 'faq-content' },
+    el('p', {}, answer),
+  );
+  const chevron = el('span', { className: 'faq-chevron' }, '');
+
+  const header = el('button', {
+    className: 'faq-question',
+    type: 'button',
+    'aria-expanded': 'false',
+  },
+    el('span', {}, question),
+    chevron,
+  );
+
+  const item = el('div', { className: 'faq-item' }, header, content);
+
+  header.addEventListener('click', () => {
+    const isOpen = item.classList.contains('faq-open');
+    // Close all other items
+    const allItems = item.parentElement?.querySelectorAll('.faq-item.faq-open');
+    if (allItems) {
+      allItems.forEach(other => {
+        if (other !== item) {
+          other.classList.remove('faq-open');
+          other.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+    item.classList.toggle('faq-open', !isOpen);
+    header.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  return item;
 }
 
 function renderMockNameInput() {

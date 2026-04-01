@@ -5,12 +5,16 @@
  *   #/           → Home / Route Builder
  *   #/mock/{id}  → Dashboard
  *   #/about      → About page
+ *   #/reviews    → Reviews page
+ *   #/stats      → Public stats dashboard
  */
 
 import { renderBuilder } from './builder.js';
 import { renderDashboard, cleanup as cleanupDashboard } from './dashboard.js';
+import { renderReviews } from './reviews.js';
+import { renderStats } from './stats.js';
 import { escapeHtml, el } from './utils.js';
-import { API_BASE } from './api.js';
+import { API_BASE, recordPageHit } from './api.js';
 
 // ── Router ───────────────────────────────────────────────────────────
 
@@ -32,6 +36,14 @@ function parseHash() {
     return { view: 'about' };
   }
 
+  if (path === '/reviews') {
+    return { view: 'reviews' };
+  }
+
+  if (path === '/stats') {
+    return { view: 'stats' };
+  }
+
   return { view: 'notfound' };
 }
 
@@ -45,6 +57,12 @@ async function navigate() {
   // Scroll to top on navigation
   window.scrollTo(0, 0);
 
+  // Record page hit (fire-and-forget, never blocks rendering)
+  const pagePath = route.view === 'dashboard'
+    ? `/mock/${route.id}`
+    : route.view === 'home' ? '/' : `/${route.view}`;
+  recordPageHit(pagePath);
+
   switch (route.view) {
     case 'home':
       renderBuilder(appContainer);
@@ -54,6 +72,12 @@ async function navigate() {
       break;
     case 'about':
       renderAbout(appContainer);
+      break;
+    case 'reviews':
+      renderReviews(appContainer);
+      break;
+    case 'stats':
+      renderStats(appContainer);
       break;
     default:
       render404(appContainer);
@@ -162,6 +186,8 @@ function renderShell() {
       ),
       el('nav', { className: 'header-nav' },
         el('a', { href: '#/', className: 'nav-link' }, 'Builder'),
+        el('a', { href: '#/reviews', className: 'nav-link' }, 'Reviews'),
+        el('a', { href: '#/stats', className: 'nav-link' }, 'Stats'),
         el('a', { href: '#/about', className: 'nav-link' }, 'About'),
         el('a', {
           href: 'https://buymeacoffee.com/timtian',
@@ -186,6 +212,10 @@ function renderShell() {
       ),
       el('p', { className: 'footer-links' },
         el('a', { href: '#/' }, 'Home'),
+        el('span', { className: 'footer-sep' }, '\u00B7'),
+        el('a', { href: '#/reviews' }, 'Reviews'),
+        el('span', { className: 'footer-sep' }, '\u00B7'),
+        el('a', { href: '#/stats' }, 'Stats'),
         el('span', { className: 'footer-sep' }, '\u00B7'),
         el('a', { href: '#/about' }, 'About'),
         el('span', { className: 'footer-sep' }, '\u00B7'),

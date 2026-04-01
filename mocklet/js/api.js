@@ -123,3 +123,115 @@ export async function deleteMock(id, secret) {
 
   return data;
 }
+
+// ── Reviews API ───────────────────────────────────────────────────────
+
+/**
+ * Submit a review.
+ *
+ * @param {{ rating: number, comment?: string, name?: string }} review
+ * @returns {Promise<Object>} { success, average_rating, total_reviews }
+ * @throws {Error}
+ */
+export async function submitReview(review) {
+  const res = await fetch(`${API_BASE}/api/reviews`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(review),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || `HTTP ${res.status}: Failed to submit review`);
+  }
+
+  return data;
+}
+
+/**
+ * Get reviews with pagination.
+ *
+ * @param {number} page
+ * @param {number} limit
+ * @returns {Promise<Object>} { average_rating, total_reviews, count_by_star, reviews, page, total_pages }
+ * @throws {Error}
+ */
+export async function getReviews(page = 1, limit = 10) {
+  const res = await fetch(`${API_BASE}/api/reviews?page=${page}&limit=${limit}`);
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || `HTTP ${res.status}: Failed to get reviews`);
+  }
+
+  return data;
+}
+
+/**
+ * Get just the review aggregate summary.
+ *
+ * @returns {Promise<Object>} { average_rating, total_reviews, count_by_star }
+ * @throws {Error}
+ */
+export async function getReviewsSummary() {
+  const res = await fetch(`${API_BASE}/api/reviews/summary`);
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || `HTTP ${res.status}: Failed to get reviews summary`);
+  }
+
+  return data;
+}
+
+// ── Stats API ────────────────────────────────────────────────────────
+
+/**
+ * Record a page hit. Fire-and-forget — does not throw or block.
+ *
+ * @param {string} page - e.g. "/", "/about", "/mock/abc123"
+ */
+export function recordPageHit(page) {
+  const payload = JSON.stringify({ page });
+
+  // Prefer sendBeacon for non-blocking, survives page unload
+  if (navigator.sendBeacon) {
+    const blob = new Blob([payload], { type: 'application/json' });
+    navigator.sendBeacon(`${API_BASE}/api/stats/hit`, blob);
+    return;
+  }
+
+  // Fallback: fire-and-forget fetch
+  fetch(`${API_BASE}/api/stats/hit`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: payload,
+    keepalive: true,
+  }).catch(() => {
+    // Silently ignore failures — analytics should never break the app
+  });
+}
+
+/**
+ * Get all public stats.
+ *
+ * @returns {Promise<Object>} {
+ *   total_hits, today_hits, mocks_created,
+ *   daily_hits: [{date, count}...],
+ *   top_pages: [{page, count}...],
+ *   top_countries: [{country, count}...],
+ *   top_referrers: [{referrer, count}...]
+ * }
+ * @throws {Error}
+ */
+export async function getStats() {
+  const res = await fetch(`${API_BASE}/api/stats`);
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || `HTTP ${res.status}: Failed to get stats`);
+  }
+
+  return data;
+}
