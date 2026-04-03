@@ -1,2 +1,495 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="refresh" content="0;url=/mocklet/"></head><body></body></html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SillyModes — Free Developer Tools & Utilities</title>
+<meta name="description" content="A collection of free, no-signup developer tools and utilities. Mock APIs, webhook relays, email security, scheduling, API tracking, and more.">
+<meta name="keywords" content="free developer tools, mock API, webhook email, email security, API changelog, group scheduling, subscription tracker, AI humanizer, API examples">
+<link rel="canonical" href="https://sillymodes.github.io/">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="SillyModes — Free Developer Tools & Utilities">
+<meta property="og:description" content="A collection of free, no-signup tools for developers. Mock APIs, webhook relays, email security, and more.">
+<meta property="og:url" content="https://sillymodes.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SillyModes">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SillyModes — Free Developer Tools & Utilities">
+<meta name="twitter:description" content="Free, no-signup tools for developers. Mock APIs, webhooks, email security, scheduling, and more.">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0e1a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='34' fill='%2367e8f9'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#06080f;
+  --bg-card:#0f1320;
+  --bg-card-hover:#151b30;
+  --border:#1e2640;
+  --border-hover:#2d3a5c;
+  --text:#e2e8f0;
+  --text-dim:#7a8baa;
+  --text-bright:#f8fafc;
+  --accent:#67e8f9;
+  --accent2:#a78bfa;
+  --accent3:#34d399;
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --radius:16px;
+  --radius-sm:10px;
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ===== BACKGROUND ===== */
+.bg-glow{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.bg-glow::before,.bg-glow::after{
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:.12;
+}
+.bg-glow::before{
+  width:600px;height:600px;
+  background:var(--accent);
+  top:-200px;left:-100px;
+}
+.bg-glow::after{
+  width:500px;height:500px;
+  background:var(--accent2);
+  bottom:-150px;right:-100px;
+}
+
+/* ===== LAYOUT ===== */
+.container{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 24px;
+  position:relative;
+  z-index:1;
+}
+
+/* ===== HEADER ===== */
+header{
+  padding:20px 0;
+  position:relative;
+  z-index:10;
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-size:1.3rem;
+  font-weight:800;
+  color:var(--text-bright);
+  text-decoration:none;
+  letter-spacing:-.02em;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.logo-icon{
+  width:36px;height:36px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  line-height:1;
+}
+.header-links{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.header-links a{
+  color:var(--text-dim);
+  text-decoration:none;
+  font-size:.875rem;
+  font-weight:500;
+  padding:8px 14px;
+  border-radius:var(--radius-sm);
+  transition:all .2s;
+}
+.header-links a:hover{
+  color:var(--text-bright);
+  background:rgba(255,255,255,.05);
+}
+.header-links .gh-link{
+  display:flex;align-items:center;gap:6px;
+}
+
+/* ===== HERO ===== */
+.hero{
+  padding:80px 0 60px;
+  text-align:center;
+}
+.hero h1{
+  font-size:clamp(2.5rem,6vw,4rem);
+  font-weight:800;
+  letter-spacing:-.03em;
+  line-height:1.1;
+  color:var(--text-bright);
+  margin-bottom:20px;
+}
+.hero h1 .gradient{
+  background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p{
+  font-size:1.15rem;
+  color:var(--text-dim);
+  max-width:560px;
+  margin:0 auto;
+  line-height:1.7;
+}
+.hero .badge-row{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:28px;
+}
+.hero .badge{
+  font-size:.8rem;
+  font-weight:600;
+  padding:6px 14px;
+  border-radius:20px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  color:var(--text-dim);
+}
+
+/* ===== GRID ===== */
+.projects{
+  padding:20px 0 100px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:20px;
+}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px;
+  text-decoration:none;
+  color:inherit;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  transition:all .25s cubic-bezier(.4,0,.2,1);
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:var(--radius);
+  opacity:0;
+  transition:opacity .3s;
+  pointer-events:none;
+}
+.card:hover{
+  background:var(--bg-card-hover);
+  border-color:var(--border-hover);
+  transform:translateY(-4px);
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+.card:hover::before{opacity:1}
+
+.card-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.card-icon{
+  width:48px;height:48px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  flex-shrink:0;
+}
+.card-tag{
+  font-size:.7rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  padding:4px 10px;
+  border-radius:6px;
+}
+.card h3{
+  font-size:1.2rem;
+  font-weight:700;
+  color:var(--text-bright);
+  letter-spacing:-.01em;
+}
+.card .desc{
+  font-size:.9rem;
+  color:var(--text-dim);
+  line-height:1.6;
+  flex:1;
+}
+.card .visit{
+  font-size:.85rem;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:gap .2s;
+}
+.card:hover .visit{gap:10px}
+.visit-arrow{transition:transform .2s}
+.card:hover .visit-arrow{transform:translateX(2px)}
+
+/* Card color themes */
+.card[data-color="cyan"]{--c:103,232,249;--c-solid:#67e8f9}
+.card[data-color="purple"]{--c:167,139,250;--c-solid:#a78bfa}
+.card[data-color="green"]{--c:52,211,153;--c-solid:#34d399}
+.card[data-color="amber"]{--c:251,191,36;--c-solid:#fbbf24}
+.card[data-color="rose"]{--c:251,113,133;--c-solid:#fb7185}
+.card[data-color="blue"]{--c:96,165,250;--c-solid:#60a5fa}
+.card[data-color="orange"]{--c:251,146,60;--c-solid:#fb923c}
+.card[data-color="teal"]{--c:45,212,191;--c-solid:#2dd4bf}
+
+.card[data-color] .card-icon{background:rgba(var(--c),.1)}
+.card[data-color] .card-tag{background:rgba(var(--c),.08);color:rgb(var(--c))}
+.card[data-color] .visit{color:var(--c-solid)}
+.card[data-color]::before{
+  background:radial-gradient(circle at 30% 0%,rgba(var(--c),.06),transparent 60%);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  border-top:1px solid var(--border);
+  padding:32px 0;
+  position:relative;
+  z-index:1;
+}
+.footer-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.footer-inner span{
+  font-size:.85rem;
+  color:var(--text-dim);
+}
+.footer-links{
+  display:flex;
+  gap:20px;
+}
+.footer-links a{
+  font-size:.85rem;
+  color:var(--text-dim);
+  text-decoration:none;
+  transition:color .2s;
+}
+.footer-links a:hover{color:var(--text-bright)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:700px){
+  .hero{padding:50px 0 40px}
+  .grid{grid-template-columns:1fr}
+  .header-links .hide-sm{display:none}
+}
+
+/* ===== ANIMATION ===== */
+@media(prefers-reduced-motion:no-preference){
+  .card{
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp .5s ease forwards;
+  }
+  .card:nth-child(1){animation-delay:.05s}
+  .card:nth-child(2){animation-delay:.1s}
+  .card:nth-child(3){animation-delay:.15s}
+  .card:nth-child(4){animation-delay:.2s}
+  .card:nth-child(5){animation-delay:.25s}
+  .card:nth-child(6){animation-delay:.3s}
+  .card:nth-child(7){animation-delay:.35s}
+  .card:nth-child(8){animation-delay:.4s}
+  @keyframes fadeUp{
+    to{opacity:1;transform:translateY(0)}
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<!-- Header -->
+<header>
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">&#9889;</span>
+      SillyModes
+    </a>
+    <nav class="header-links">
+      <a href="#projects" class="hide-sm">Projects</a>
+      <a href="https://github.com/sillymodes" class="gh-link" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Free tools,<br><span class="gradient">zero friction.</span></h1>
+    <p>A growing collection of free, open-source tools for developers and everyone. No signup required. No tracking. Just use them.</p>
+    <div class="badge-row">
+      <span class="badge">100% Free</span>
+      <span class="badge">No Signup</span>
+      <span class="badge">Open Source</span>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Grid -->
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="grid">
+
+      <!-- Mocklet -->
+      <a href="/mocklet/" class="card" data-color="cyan">
+        <div class="card-top">
+          <div class="card-icon">&#127919;</div>
+          <span class="card-tag">Developer Tools</span>
+        </div>
+        <h3>Mocklet</h3>
+        <p class="desc">Spin up a disposable mock REST API in seconds. Define routes, inspect incoming requests, and test integrations &mdash; no signup, auto-expires in 24h.</p>
+        <span class="visit">Visit Mocklet <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- APIWatch -->
+      <a href="/apiwatch/" class="card" data-color="amber">
+        <div class="card-top">
+          <div class="card-icon">&#128214;</div>
+          <span class="card-tag">Developer Tools</span>
+        </div>
+        <h3>APIWatch</h3>
+        <p class="desc">Track breaking changes, deprecations, and updates across 200+ APIs in one place. Severity-tagged changelogs for Stripe, OpenAI, AWS, and more.</p>
+        <span class="visit">Visit APIWatch <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- HookMail -->
+      <a href="/hookmail/" class="card" data-color="purple">
+        <div class="card-top">
+          <div class="card-icon">&#128232;</div>
+          <span class="card-tag">Developer Tools</span>
+        </div>
+        <h3>HookMail</h3>
+        <p class="desc">Turn any webhook into a formatted email notification. Paste a URL, point your webhook at it, get clean email alerts. Works with GitHub, Stripe, CI/CD.</p>
+        <span class="visit">Visit HookMail <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- ReqShare -->
+      <a href="/reqshare/" class="card" data-color="blue">
+        <div class="card-top">
+          <div class="card-icon">&#128640;</div>
+          <span class="card-tag">Developer Tools</span>
+        </div>
+        <h3>ReqShare</h3>
+        <p class="desc">Create shareable, runnable API example pages. The fastest way to show someone how an API works &mdash; no install, no account needed.</p>
+        <span class="visit">Visit ReqShare <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- MailGuard -->
+      <a href="/mailguard/" class="card" data-color="rose">
+        <div class="card-top">
+          <div class="card-icon">&#128737;</div>
+          <span class="card-tag">Security</span>
+        </div>
+        <h3>MailGuard</h3>
+        <p class="desc">Check any domain's email security in seconds. Free SPF, DKIM &amp; DMARC scanner with A&ndash;F grading and copy-paste fix suggestions.</p>
+        <span class="visit">Visit MailGuard <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- MeetGrid -->
+      <a href="/meetgrid/" class="card" data-color="green">
+        <div class="card-top">
+          <div class="card-icon">&#128197;</div>
+          <span class="card-tag">Productivity</span>
+        </div>
+        <h3>MeetGrid</h3>
+        <p class="desc">Free group scheduling tool. Create an availability grid, share the link, and find the best meeting time &mdash; works on mobile, no signup.</p>
+        <span class="visit">Visit MeetGrid <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- SubTrackr -->
+      <a href="/subtrackr/" class="card" data-color="teal">
+        <div class="card-top">
+          <div class="card-icon">&#128179;</div>
+          <span class="card-tag">Finance</span>
+        </div>
+        <h3>SubTrackr</h3>
+        <p class="desc">Track all your subscriptions for free. See monthly spending, get renewal reminders, and stop wasting money on forgotten subscriptions. No bank linking.</p>
+        <span class="visit">Visit SubTrackr <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- Humanize Text -->
+      <a href="/humanize-text/" class="card" data-color="orange">
+        <div class="card-top">
+          <div class="card-icon">&#9997;&#65039;</div>
+          <span class="card-tag">AI / Writing</span>
+        </div>
+        <h3>Humanize Text</h3>
+        <p class="desc">Transform AI-generated text into natural, human-like writing. Paste output from ChatGPT, Claude, or Gemini and get instant results.</p>
+        <span class="visit">Visit Humanize Text <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container footer-inner">
+    <span>&copy; 2025 SillyModes. All tools free &amp; open source.</span>
+    <nav class="footer-links">
+      <a href="https://github.com/sillymodes" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://buymeacoffee.com/timtian" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
