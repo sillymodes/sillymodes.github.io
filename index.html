@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SillyModes — Free Developer Tools & Utilities</title>
 <meta name="description" content="A collection of free, no-signup developer tools and utilities. Mock APIs, webhook relays, email security, scheduling, API tracking, and more.">
-<meta name="keywords" content="free developer tools, mock API, webhook email, email security, API changelog, group scheduling, subscription tracker, AI humanizer, API examples">
+<meta name="keywords" content="free developer tools, mock API, webhook email, email security, API changelog, group scheduling, subscription tracker, AI humanizer, API examples, wall anchor tool, gig worker gear, migraine relief, standing all day">
 <link rel="canonical" href="https://sillymodes.github.io/">
 <meta name="robots" content="index, follow">
 
@@ -139,6 +139,9 @@ header{
 .header-links a:hover{
   color:var(--text-bright);
   background:rgba(255,255,255,.05);
+}
+.header-links .gh-link{
+  display:flex;align-items:center;gap:6px;
 }
 
 /* ===== HERO ===== */
@@ -280,6 +283,7 @@ header{
 .card[data-color="blue"]{--c:96,165,250;--c-solid:#60a5fa}
 .card[data-color="orange"]{--c:251,146,60;--c-solid:#fb923c}
 .card[data-color="teal"]{--c:45,212,191;--c-solid:#2dd4bf}
+.card[data-color="indigo"]{--c:129,140,248;--c-solid:#818cf8}
 .card[data-color="lime"]{--c:163,230,53;--c-solid:#a3e635}
 .card[data-color="pink"]{--c:244,114,182;--c-solid:#f472b6}
 .card[data-color="sky"]{--c:56,189,248;--c-solid:#38bdf8}
@@ -366,6 +370,10 @@ footer{
     </a>
     <nav class="header-links">
       <a href="#projects" class="hide-sm">Projects</a>
+      <a href="https://github.com/sillymodes" class="gh-link" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
     </nav>
   </div>
 </header>
@@ -388,107 +396,19 @@ footer{
   <div class="container">
     <div class="grid">
 
-      <!-- Mocklet -->
-      <a href="/mocklet/" target="_blank" rel="noopener" class="card" data-color="cyan">
-        <div class="card-top">
-          <div class="card-icon">&#127919;</div>
-          <span class="card-tag">Developer Tools</span>
-        </div>
-        <h3>Mocklet</h3>
-        <p class="desc">Spin up a disposable mock REST API in seconds. Define routes, inspect incoming requests, and test integrations &mdash; no signup, auto-expires in 24h.</p>
-        <span class="visit">Visit Mocklet <span class="visit-arrow">&rarr;</span></span>
-      </a>
-
-      <!-- APIWatch -->
-      <a href="/apiwatch/" target="_blank" rel="noopener" class="card" data-color="amber">
-        <div class="card-top">
-          <div class="card-icon">&#128214;</div>
-          <span class="card-tag">Developer Tools</span>
-        </div>
-        <h3>APIWatch</h3>
-        <p class="desc">Track breaking changes, deprecations, and updates across 200+ APIs in one place. Severity-tagged changelogs for Stripe, OpenAI, AWS, and more.</p>
-        <span class="visit">Visit APIWatch <span class="visit-arrow">&rarr;</span></span>
-      </a>
-
-      <!-- HookMail -->
-      <a href="/hookmail/" target="_blank" rel="noopener" class="card" data-color="purple">
-        <div class="card-top">
-          <div class="card-icon">&#128232;</div>
-          <span class="card-tag">Developer Tools</span>
-        </div>
-        <h3>HookMail</h3>
-        <p class="desc">Turn any webhook into a formatted email notification. Paste a URL, point your webhook at it, get clean email alerts. Works with GitHub, Stripe, CI/CD.</p>
-        <span class="visit">Visit HookMail <span class="visit-arrow">&rarr;</span></span>
-      </a>
-
-      <!-- ReqShare -->
-      <a href="/reqshare/" target="_blank" rel="noopener" class="card" data-color="blue">
-        <div class="card-top">
-          <div class="card-icon">&#128640;</div>
-          <span class="card-tag">Developer Tools</span>
-        </div>
-        <h3>ReqShare</h3>
-        <p class="desc">Create shareable, runnable API example pages. The fastest way to show someone how an API works &mdash; no install, no account needed.</p>
-        <span class="visit">Visit ReqShare <span class="visit-arrow">&rarr;</span></span>
-      </a>
-
-      <!-- MailGuard -->
-      <a href="/mailguard/" target="_blank" rel="noopener" class="card" data-color="rose">
-        <div class="card-top">
-          <div class="card-icon">&#128737;</div>
-          <span class="card-tag">Security</span>
-        </div>
-        <h3>MailGuard</h3>
-        <p class="desc">Check any domain's email security in seconds. Free SPF, DKIM &amp; DMARC scanner with A&ndash;F grading and copy-paste fix suggestions.</p>
-        <span class="visit">Visit MailGuard <span class="visit-arrow">&rarr;</span></span>
-      </a>
-
-      <!-- MeetGrid -->
-      <a href="/meetgrid/" target="_blank" rel="noopener" class="card" data-color="green">
-        <div class="card-top">
-          <div class="card-icon">&#128197;</div>
-          <span class="card-tag">Productivity</span>
-        </div>
-        <h3>MeetGrid</h3>
-        <p class="desc">Free group scheduling tool. Create an availability grid, share the link, and find the best meeting time &mdash; works on mobile, no signup.</p>
-        <span class="visit">Visit MeetGrid <span class="visit-arrow">&rarr;</span></span>
-      </a>
-
-      <!-- SubTrackr -->
-      <a href="/subtrackr/" target="_blank" rel="noopener" class="card" data-color="teal">
-        <div class="card-top">
-          <div class="card-icon">&#128179;</div>
-          <span class="card-tag">Finance</span>
-        </div>
-        <h3>SubTrackr</h3>
-        <p class="desc">Track all your subscriptions for free. See monthly spending, get renewal reminders, and stop wasting money on forgotten subscriptions. No bank linking.</p>
-        <span class="visit">Visit SubTrackr <span class="visit-arrow">&rarr;</span></span>
-      </a>
-
-      <!-- Humanize Text -->
-      <a href="/humanize-text/" target="_blank" rel="noopener" class="card" data-color="orange">
-        <div class="card-top">
-          <div class="card-icon">&#9997;&#65039;</div>
-          <span class="card-tag">AI / Writing</span>
-        </div>
-        <h3>Humanize Text</h3>
-        <p class="desc">Transform AI-generated text into natural, human-like writing. Paste output from ChatGPT, Claude, or Gemini and get instant results.</p>
-        <span class="visit">Visit Humanize Text <span class="visit-arrow">&rarr;</span></span>
-      </a>
-
       <!-- HangRight -->
-      <a href="/hangright/" target="_blank" rel="noopener" class="card" data-color="rose">
+      <a href="/hangright/" class="card" data-color="indigo">
         <div class="card-top">
           <div class="card-icon">&#128296;</div>
-          <span class="card-tag">Home / DIY</span>
+          <span class="card-tag">Home &amp; DIY</span>
         </div>
         <h3>HangRight</h3>
-        <p class="desc">Find the right wall anchor in 30 seconds. Answer 4 questions about your wall type and weight &mdash; get a specific fastener recommendation with buy links.</p>
+        <p class="desc">Find the right wall anchor in 30 seconds. Answer 4 questions about your wall type, what you're hanging, and the weight &mdash; get a specific fastener recommendation.</p>
         <span class="visit">Visit HangRight <span class="visit-arrow">&rarr;</span></span>
       </a>
 
       <!-- GigCarGear -->
-      <a href="/gigcargear/" target="_blank" rel="noopener" class="card" data-color="lime">
+      <a href="/gigcargear/" class="card" data-color="lime">
         <div class="card-top">
           <div class="card-icon">&#128663;</div>
           <span class="card-tag">Buying Guides</span>
@@ -499,7 +419,7 @@ footer{
       </a>
 
       <!-- MigraineToolkit -->
-      <a href="/migrainetoolkit/" target="_blank" rel="noopener" class="card" data-color="pink">
+      <a href="/migrainetoolkit/" class="card" data-color="pink">
         <div class="card-top">
           <div class="card-icon">&#129504;</div>
           <span class="card-tag">Health &amp; Wellness</span>
@@ -510,7 +430,7 @@ footer{
       </a>
 
       <!-- OnYourFeetAllDay -->
-      <a href="/onyourfeetallday/" target="_blank" rel="noopener" class="card" data-color="sky">
+      <a href="/onyourfeetallday/" class="card" data-color="sky">
         <div class="card-top">
           <div class="card-icon">&#129406;</div>
           <span class="card-tag">Health &amp; Wellness</span>
@@ -518,6 +438,94 @@ footer{
         <h3>On Your Feet All Day</h3>
         <p class="desc">Find the best shoes, insoles, compression socks, anti-fatigue mats, and recovery tools for nurses, chefs, retail workers, and anyone who stands 8+ hours.</p>
         <span class="visit">Visit On Your Feet All Day <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- Mocklet -->
+      <a href="/mocklet/" class="card" data-color="cyan">
+        <div class="card-top">
+          <div class="card-icon">&#127919;</div>
+          <span class="card-tag">Developer Tools</span>
+        </div>
+        <h3>Mocklet</h3>
+        <p class="desc">Spin up a disposable mock REST API in seconds. Define routes, inspect incoming requests, and test integrations &mdash; no signup, auto-expires in 24h.</p>
+        <span class="visit">Visit Mocklet <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- APIWatch -->
+      <a href="/apiwatch/" class="card" data-color="amber">
+        <div class="card-top">
+          <div class="card-icon">&#128214;</div>
+          <span class="card-tag">Developer Tools</span>
+        </div>
+        <h3>APIWatch</h3>
+        <p class="desc">Track breaking changes, deprecations, and updates across 200+ APIs in one place. Severity-tagged changelogs for Stripe, OpenAI, AWS, and more.</p>
+        <span class="visit">Visit APIWatch <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- HookMail -->
+      <a href="/hookmail/" class="card" data-color="purple">
+        <div class="card-top">
+          <div class="card-icon">&#128232;</div>
+          <span class="card-tag">Developer Tools</span>
+        </div>
+        <h3>HookMail</h3>
+        <p class="desc">Turn any webhook into a formatted email notification. Paste a URL, point your webhook at it, get clean email alerts. Works with GitHub, Stripe, CI/CD.</p>
+        <span class="visit">Visit HookMail <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- ReqShare -->
+      <a href="/reqshare/" class="card" data-color="blue">
+        <div class="card-top">
+          <div class="card-icon">&#128640;</div>
+          <span class="card-tag">Developer Tools</span>
+        </div>
+        <h3>ReqShare</h3>
+        <p class="desc">Create shareable, runnable API example pages. The fastest way to show someone how an API works &mdash; no install, no account needed.</p>
+        <span class="visit">Visit ReqShare <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- MailGuard -->
+      <a href="/mailguard/" class="card" data-color="rose">
+        <div class="card-top">
+          <div class="card-icon">&#128737;</div>
+          <span class="card-tag">Security</span>
+        </div>
+        <h3>MailGuard</h3>
+        <p class="desc">Check any domain's email security in seconds. Free SPF, DKIM &amp; DMARC scanner with A&ndash;F grading and copy-paste fix suggestions.</p>
+        <span class="visit">Visit MailGuard <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- MeetGrid -->
+      <a href="/meetgrid/" class="card" data-color="green">
+        <div class="card-top">
+          <div class="card-icon">&#128197;</div>
+          <span class="card-tag">Productivity</span>
+        </div>
+        <h3>MeetGrid</h3>
+        <p class="desc">Free group scheduling tool. Create an availability grid, share the link, and find the best meeting time &mdash; works on mobile, no signup.</p>
+        <span class="visit">Visit MeetGrid <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- SubTrackr -->
+      <a href="/subtrackr/" class="card" data-color="teal">
+        <div class="card-top">
+          <div class="card-icon">&#128179;</div>
+          <span class="card-tag">Finance</span>
+        </div>
+        <h3>SubTrackr</h3>
+        <p class="desc">Track all your subscriptions for free. See monthly spending, get renewal reminders, and stop wasting money on forgotten subscriptions. No bank linking.</p>
+        <span class="visit">Visit SubTrackr <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- Humanize Text -->
+      <a href="/humanize-text/" class="card" data-color="orange">
+        <div class="card-top">
+          <div class="card-icon">&#9997;&#65039;</div>
+          <span class="card-tag">AI / Writing</span>
+        </div>
+        <h3>Humanize Text</h3>
+        <p class="desc">Transform AI-generated text into natural, human-like writing. Paste output from ChatGPT, Claude, or Gemini and get instant results.</p>
+        <span class="visit">Visit Humanize Text <span class="visit-arrow">&rarr;</span></span>
       </a>
 
     </div>
@@ -529,6 +537,7 @@ footer{
   <div class="container footer-inner">
     <span>&copy; 2025 SillyModes. All tools free &amp; open source.</span>
     <nav class="footer-links">
+      <a href="https://github.com/sillymodes" target="_blank" rel="noopener">GitHub</a>
       <a href="https://buymeacoffee.com/timtian" target="_blank" rel="noopener">Buy Me a Coffee</a>
     </nav>
   </div>
