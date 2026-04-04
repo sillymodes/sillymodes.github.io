@@ -25,7 +25,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -280,6 +280,9 @@ header{
 .card[data-color="blue"]{--c:96,165,250;--c-solid:#60a5fa}
 .card[data-color="orange"]{--c:251,146,60;--c-solid:#fb923c}
 .card[data-color="teal"]{--c:45,212,191;--c-solid:#2dd4bf}
+.card[data-color="lime"]{--c:163,230,53;--c-solid:#a3e635}
+.card[data-color="pink"]{--c:244,114,182;--c-solid:#f472b6}
+.card[data-color="sky"]{--c:56,189,248;--c-solid:#38bdf8}
 
 .card[data-color] .card-icon{background:rgba(var(--c),.1)}
 .card[data-color] .card-tag{background:rgba(var(--c),.08);color:rgb(var(--c))}
@@ -341,6 +344,9 @@ footer{
   .card:nth-child(7){animation-delay:.35s}
   .card:nth-child(8){animation-delay:.4s}
   .card:nth-child(9){animation-delay:.45s}
+  .card:nth-child(10){animation-delay:.5s}
+  .card:nth-child(11){animation-delay:.55s}
+  .card:nth-child(12){animation-delay:.6s}
   @keyframes fadeUp{
     to{opacity:1;transform:translateY(0)}
   }
@@ -479,6 +485,39 @@ footer{
         <h3>HangRight</h3>
         <p class="desc">Find the right wall anchor in 30 seconds. Answer 4 questions about your wall type and weight &mdash; get a specific fastener recommendation with buy links.</p>
         <span class="visit">Visit HangRight <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- GigCarGear -->
+      <a href="/gigcargear/" target="_blank" rel="noopener" class="card" data-color="lime">
+        <div class="card-top">
+          <div class="card-icon">&#128663;</div>
+          <span class="card-tag">Buying Guides</span>
+        </div>
+        <h3>GigCarGear</h3>
+        <p class="desc">Interactive buying guide for gig workers. Find the best dash cams, phone mounts, organizers, and car office gear for rideshare and delivery drivers.</p>
+        <span class="visit">Visit GigCarGear <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- MigraineToolkit -->
+      <a href="/migrainetoolkit/" target="_blank" rel="noopener" class="card" data-color="pink">
+        <div class="card-top">
+          <div class="card-icon">&#129504;</div>
+          <span class="card-tag">Health &amp; Wellness</span>
+        </div>
+        <h3>MigraineToolkit</h3>
+        <p class="desc">Compare wearables, FL-41 glasses, ice caps, supplements, and more. Take the free quiz to build your personalised migraine relief kit.</p>
+        <span class="visit">Visit MigraineToolkit <span class="visit-arrow">&rarr;</span></span>
+      </a>
+
+      <!-- OnYourFeetAllDay -->
+      <a href="/onyourfeetallday/" target="_blank" rel="noopener" class="card" data-color="sky">
+        <div class="card-top">
+          <div class="card-icon">&#129406;</div>
+          <span class="card-tag">Health &amp; Wellness</span>
+        </div>
+        <h3>On Your Feet All Day</h3>
+        <p class="desc">Find the best shoes, insoles, compression socks, anti-fatigue mats, and recovery tools for nurses, chefs, retail workers, and anyone who stands 8+ hours.</p>
+        <span class="visit">Visit On Your Feet All Day <span class="visit-arrow">&rarr;</span></span>
       </a>
 
     </div>
